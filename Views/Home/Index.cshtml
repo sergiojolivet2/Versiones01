@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Software>
+
+@{
+    ViewBag.Title = "Buscar Software";
+}
+
+<h2>Buscar Software</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.Label("Versión:")
+        @Html.TextBox("version")
+        <input type="submit" value="Buscar" />
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <h3>Software encontrado:</h3>
+    <ul>
+        @foreach (var software in Model)
+        {
+            <li>@software.Name - @software.Version</li>
+        }
+    </ul>
+}
+else
+{
+    <p>@Html.ValidationSummary()</p>
+}
